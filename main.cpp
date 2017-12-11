@@ -36,53 +36,40 @@ public:
     }
 };
 // method stack
-class Stack {
+class Stck {
 public:
-    int* top;
-    int stack[SIZE];
+    int top;
+    int stck[SIZE];
 
-    Stack (){
-        top = stack;
-        stack[SIZE] = NULL;
-        counter = 0;
+    Stck (){
+        top = 0;
     }
-/*
-    bool stackisEmpty(){
-        Stack st;
-        if (st.top == 0){
-            cout<<"The stack is empty ";
-            return true;
+
+    bool stckEmpty(){
+        return bool (top <= NULL);
+    }
+
+    bool stckFull(){
+       return bool (top >= SIZE);
+    }
+
+    void pushToStck(int value) {
+        if ( stckFull() ){
+            cout<<"The stack is full "<<endl;
+            return;
         }
-        if (st.top == st.stack) {
-            cout<<"The stack is full ";
+        *(stck + top) = value;
+        top++;
+    }
+
+    int popStck(){
+        if ( stckEmpty() ) {
+            cout<<"The stack is empty "<<endl;
             return false;
         }
-        if ( st.top > st.stack) {
-            cout<<"The stack is out of range ";
-            return true;
-        }
-    }
-*/
-    bool stackEmpty(){
-        return bool (top == NULL);
-    }
-
-    void pushToStack(int value) {
-            if (stackEmpty() == 1){
-                cout<<"The stack is empty "<<endl;
-                return;
-            }
-            *top = value;
-            top++;
-    }
-
-    int getStack(){
-        int value = *top;
-            if (*top == 0){
-                top--;
-            }
-            top--;
-            return value;
+        top--;
+        int value =  *(stck+top);
+        return value;
     }
 };
 // method map add, search
@@ -119,11 +106,15 @@ int main() {
 
     //simple with stack
     cout<<"The stack simple"<<endl;
-    Stack st;
-  //  cout<<st.stackEmpty()<<endl;
-    st.pushToStack(11);
-    st.pushToStack(12);
-    st.pushToStack(14);
+    Stck st;
+    cout<<st.stckEmpty()<<endl;
+    st.pushToStck(11);
+    st.pushToStck(12);
+    st.pushToStck(14);
+    cout<<st.popStck()<<endl;
+    cout<<st.popStck()<<endl;
+    cout<<st.popStck()<<endl;
+
     //simple with map
     cout<<"The map simple"<<endl;
     Map map;
